@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../Button/Button';
 import css from './Counter.module.css';
-import { CHANGE_STEP, DECREMENT, INCREMENT, RESET } from '../../redux/counterLogics/constants';
 import { selectCounter, selectStep } from '../../redux/counterLogics/selectors';
+import { changeStep, decrement, increment, reset } from '../../redux/counterLogics/actions';
 
 export function Counter() {
   const counter = useSelector(selectCounter);
@@ -11,18 +11,16 @@ export function Counter() {
   const dispatch = useDispatch(); //Manager for redux changes
 
   const handlePlusClick = () => {
-    dispatch({ type: INCREMENT }); //send to redux (reducer.js) action with type type
+    dispatch(increment()); //send to redux (reducer.js) action with type type
   };
   const handleMinusClick = () => {
-    dispatch({
-      type: DECREMENT,
-    });
+    dispatch(decrement());
   };
   const handleResetClick = () => {
-    dispatch({ type: RESET });
+    dispatch(reset());
   };
   const hadleChangeStep = e => {
-    dispatch({ type: CHANGE_STEP });
+    dispatch(changeStep(+e.target.value)); //send an action with payload = (e.target.value)
   };
 
   return (
