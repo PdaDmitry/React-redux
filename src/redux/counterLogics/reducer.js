@@ -1,6 +1,6 @@
 const initialState = {
-  counter: 0,
-  step: 1,
+  counterNow: 0,
+  stepNow: 1,
 };
 
 export const counterReducer = (state = initialState, action) => {
